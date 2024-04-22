@@ -1,0 +1,18 @@
+@import url(../theme/_index.scss);
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: var(--black);
+}
+a, p{
+  text-decoration: none;
+  font-family: Roboto, Helvetica;
+}
+ul, li{
+  padding: 0;
+}
+li{
+  list-style-type: none;
+}
