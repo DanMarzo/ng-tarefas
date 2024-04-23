@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ListComponent } from './modules/todo-list/list/list.component';
+import { ListComponent } from './modules/todo-list/page/list/list.component';
 
 export const routes: Routes = [
   {
