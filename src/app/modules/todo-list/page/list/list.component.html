@@ -10,8 +10,9 @@
     </button>
   </div>
   <ng-template #elseBlock>
-    <app-input-add-item (oututAddListItems)="getInputAndAddItem($event)" />
+    <app-input-add-item
+      [inputListItems]="getListItens()"
+      (oututAddListItems)="getInputAndAddItem($event)"
+    />
   </ng-template>
 </div>
-<!-- Uso de Pipes -->
-{{ getListItens() | json }}
