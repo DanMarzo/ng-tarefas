@@ -20,7 +20,7 @@ export class InputAddItemComponent {
   #cdr = inject(ChangeDetectorRef);
 //ele pega o child com essa variavel do child HTML
   @ViewChild('inputText') public inputText!: ElementRef;
-  @Output() public outPutListItems = new EventEmitter<IListItems>();
+  @Output() public oututAddListItems = new EventEmitter<IListItems>();
 
   public focusAndAddItem(value: string) {
     if (value) {
@@ -31,7 +31,7 @@ export class InputAddItemComponent {
       const timeStamp = dataAtual.getTime();
       const id = `ID ${timeStamp}`
 
-      this.outPutListItems.emit({
+      this.oututAddListItems.emit({
         id,
         checked:false,
         value

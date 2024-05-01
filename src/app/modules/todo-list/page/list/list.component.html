@@ -10,6 +10,6 @@
     </button>
   </div>
   <ng-template #elseBlock>
-    <app-input-add-item />
+    <app-input-add-item (oututAddListItems)="getInputAndAddItem($event)" />
   </ng-template>
 </div>

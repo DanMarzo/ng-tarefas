@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { InputAddItemComponent } from '../../components/input-add-item/input-add-item.component';
+import { IListItems } from '../../interface/IListitems.interface';
 
 @Component({
   selector: 'app-list',
@@ -12,4 +13,7 @@ import { InputAddItemComponent } from '../../components/input-add-item/input-add
 export class ListComponent {
   public addItem = signal<boolean>(true);
 
+  public getInputAndAddItem(value:IListItems){
+    localStorage.setItem("@my-list", JSON.stringify([value]));
+  }
 }
