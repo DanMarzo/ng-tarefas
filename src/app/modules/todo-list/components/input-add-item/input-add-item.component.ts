@@ -20,6 +20,9 @@ export class InputAddItemComponent {
   #cdr = inject(ChangeDetectorRef);
 //ele pega o child com essa variavel do child HTML
   @ViewChild('inputText') public inputText!: ElementRef;
+  /**
+   * O @output e eventemitr quer dizer que a aquele component esta enviando determinada informacao
+   */
   @Output() public oututAddListItems = new EventEmitter<IListItems>();
 
   public focusAndAddItem(value: string) {
