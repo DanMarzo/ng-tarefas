@@ -6,20 +6,24 @@ import { IListItems } from '../../interface/IListitems.interface';
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [NgIf,InputAddItemComponent, JsonPipe],
+  imports: [NgIf, InputAddItemComponent, JsonPipe],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrl: './list.component.scss',
 })
 export class ListComponent {
   public addItem = signal<boolean>(true);
 
-  #setListItens = signal<IListItems[]>(this.#parseItems());
-  getListItens = this.#setListItens.asReadonly();
+  #setListItens = signal<Array<IListItems>>(this.#parseItems());
+  public getListItens = this.#setListItens.asReadonly();
 
-  #parseItems(){
-    return JSON.parse(localStorage.getItem("@my-list") ??"[]")
+  #parseItems() {
+    return JSON.parse(localStorage.getItem('@my-list') ?? '[]');
   }
-  public getInputAndAddItem(value:IListItems){
-    localStorage.setItem("@my-list", JSON.stringify([value]));
+  public getInputAndAddItem(value: IListItems) {
+    localStorage.setItem(
+      '@my-list',
+      JSON.stringify([...this.#setListItens(), value])
+    );
+    return this.#setListItens.set(this.#parseItems());
   }
 }
