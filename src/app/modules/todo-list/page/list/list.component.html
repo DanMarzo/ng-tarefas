@@ -1,3 +1,4 @@
+@if (!getListItens().length) {
 <div class="container">
   <img
     src="assets/task-list-null.png"
@@ -16,3 +17,9 @@
     />
   </ng-template>
 </div>
+} @else {
+<app-input-add-item
+  [inputListItems]="getListItens()"
+  (oututAddListItems)="getInputAndAddItem($event)"
+/>
+}

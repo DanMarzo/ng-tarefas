@@ -1,16 +1,19 @@
 <header [ngClass]="{ 'has-items': inputListItems.length }">
   @if (inputListItems.length) {
-  <h1>MInha lista</h1>
+  <p>MInha lista</p>
   }
-  <div>
-    <label class="input-label-text" for="inputValue">
+  <div [ngClass]="{ container: inputListItems.length }">
+    <label
+      class="input-label-text"
+      for="inputValue"
+      [ngClass]="{ 'remove-margin-bottom': inputListItems.length }"
+    >
       <input
         (keyup.enter)="focusAndAddItem(inputText.value)"
         #inputText
         type="text"
         placeholder="Adicione um novo item"
         id="inputValue"
-        [ngClass]="{ 'remove-margin-bottom': inputListItems.length }"
       />
       <button
         class="btn btn-primary-circle"
