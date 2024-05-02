@@ -9,12 +9,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IListItems } from '../../interface/IListitems.interface';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-input-add-item',
   standalone: true,
-  imports: [JsonPipe],
+  imports: [JsonPipe, NgClass],
   templateUrl: './input-add-item.component.html',
   styleUrl: './input-add-item.component.scss',
 })

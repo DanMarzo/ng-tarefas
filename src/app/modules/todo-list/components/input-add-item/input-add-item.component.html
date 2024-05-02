@@ -1,17 +1,24 @@
-<div>
-  <label class="input-label-text" for="inputValue">
-    <input
-      (keyup.enter)="focusAndAddItem(inputText.value)"
-      #inputText
-      type="text"
-      placeholder="Adicione um novo item"
-      id="inputValue"
-    />
-    <button
-      class="btn btn-primary-circle"
-      title="Adicionar um novo item"
-      (click)="focusAndAddItem(inputText.value)"
-    ></button>
-  </label>
-</div>
-{{ inputListItems | json }}
+<header [ngClass]="{ 'has-items': inputListItems.length }">
+  @if (inputListItems.length) {
+  <h1>MInha lista</h1>
+  }
+  <div>
+    <label class="input-label-text" for="inputValue">
+      <input
+        (keyup.enter)="focusAndAddItem(inputText.value)"
+        #inputText
+        type="text"
+        placeholder="Adicione um novo item"
+        id="inputValue"
+        [ngClass]="{ 'remove-margin-bottom': inputListItems.length }"
+      />
+      <button
+        class="btn btn-primary-circle"
+        title="Adicionar um novo item"
+        (click)="focusAndAddItem(inputText.value)"
+      ></button>
+    </label>
+  </div>
+
+  {{ inputListItems | json }}
+</header>
