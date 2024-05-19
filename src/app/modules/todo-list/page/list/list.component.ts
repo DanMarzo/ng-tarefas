@@ -28,8 +28,22 @@ export class ListComponent {
     return this.#setListItens.set(this.#parseItems());
   }
 
+  public listItemsStage(value:'pending'| 'complete'){
+    return this.getListItens().filter((res:IListItems)=>{
+      if(value === 'pending'){
+        return !res.checked;
+      }
+      if(value == 'complete'){
+        return res.checked;
+      }
+      return res;
+    })
+  }
+
+
   public deleteAllItems(){
     localStorage.removeItem("@my-list")
     return this.#setListItens.set(this.#parseItems());
   }
+
 }

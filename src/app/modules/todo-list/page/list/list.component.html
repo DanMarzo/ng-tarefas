@@ -24,7 +24,9 @@
 />
 <main class="container">
   <h2>Pendencias</h2>
-  <app-input-list-item [inputListItems]="getListItens()" />
+  <app-input-list-item [inputListItems]="listItemsStage('pending')" />
+  <h2>Concluidas</h2>
+  <app-input-list-item [inputListItems]="listItemsStage('complete')" />
 </main>
 <footer>
   <button (click)="deleteAllItems()" class="btn btn-danger">
