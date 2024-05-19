@@ -2,11 +2,12 @@ import { JsonPipe, NgIf } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { InputAddItemComponent } from '../../components/input-add-item/input-add-item.component';
 import { IListItems } from '../../interface/IListitems.interface';
+import { InputListItemComponent } from '../../components/input-list-item/input-list-item.component';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [NgIf, InputAddItemComponent, JsonPipe],
+  imports: [NgIf, InputAddItemComponent, InputListItemComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })

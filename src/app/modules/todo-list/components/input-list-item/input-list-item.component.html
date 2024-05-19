@@ -1,0 +1,13 @@
+<div *ngFor="let item of inputListItems">
+  <label class="input-label-text" [for]="item.id">
+    <input type="checkbox" #inputCheckBox [checked]="item.checked" />
+    <input
+      type="text"
+      #inputValue
+      [value]="item.value"
+      placeholder="Adicione um valor"
+      autofocus
+    />
+    <button class="btn btn-danger-circle" title="Delete este item"></button>
+  </label>
+</div>

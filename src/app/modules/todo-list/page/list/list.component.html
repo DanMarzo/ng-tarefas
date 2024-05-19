@@ -22,7 +22,10 @@
   [inputListItems]="getListItens()"
   (oututAddListItems)="getInputAndAddItem($event)"
 />
-<main class="container"></main>
+<main class="container">
+  <h2>Pendencias</h2>
+  <app-input-list-item [inputListItems]="getListItens()" />
+</main>
 <footer>
   <button (click)="deleteAllItems()" class="btn btn-danger">
     Deletar todos os itens
