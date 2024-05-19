@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IListItems } from '../../interface/IListitems.interface';
 import { NgFor } from '@angular/common';
 
@@ -7,9 +7,14 @@ import { NgFor } from '@angular/common';
   standalone: true,
   imports: [NgFor],
   templateUrl: './input-list-item.component.html',
-  styleUrl: './input-list-item.component.scss'
+  styleUrl: './input-list-item.component.scss',
 })
 export class InputListItemComponent {
-    @Input({required: true}) public inputListItems: Array<IListItems> = [];
+  @Input({ required: true }) public inputListItems: Array<IListItems> = [];
+  @Output() public outputUpdateItemCheckBox =
+    new EventEmitter<{id:string, checked:boolean}>();
 
+  public updateItemCheckBox(id:string, checked:boolean){
+    return this.outputUpdateItemCheckBox.emit({id, checked})
+  }
 }

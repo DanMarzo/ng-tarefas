@@ -25,11 +25,17 @@
 <main class="container">
   <div *ngIf="listItemsStage('pending').length">
     <h2>Pendencias</h2>
-    <app-input-list-item [inputListItems]="listItemsStage('pending')" />
+    <app-input-list-item
+      [inputListItems]="listItemsStage('pending')"
+      (outputUpdateItemCheckBox)="updateItemCheckbox($event)"
+    />
   </div>
   <div *ngIf="listItemsStage('complete').length">
     <h2>Concluidas</h2>
-    <app-input-list-item [inputListItems]="listItemsStage('complete')" />
+    <app-input-list-item
+      [inputListItems]="listItemsStage('complete')"
+      (outputUpdateItemCheckBox)="updateItemCheckbox($event)"
+    />
   </div>
 </main>
 <footer>

@@ -28,22 +28,37 @@ export class ListComponent {
     return this.#setListItens.set(this.#parseItems());
   }
 
-  public listItemsStage(value:'pending'| 'complete'){
-    return this.getListItens().filter((res:IListItems)=>{
-      if(value === 'pending'){
+  public listItemsStage(value: 'pending' | 'complete') {
+    return this.getListItens().filter((res: IListItems) => {
+      if (value === 'pending') {
         return !res.checked;
       }
-      if(value == 'complete'){
+      if (value == 'complete') {
         return res.checked;
       }
       return res;
-    })
+    });
   }
 
-
-  public deleteAllItems(){
-    localStorage.removeItem("@my-list")
+  public deleteAllItems() {
+    localStorage.removeItem('@my-list');
     return this.#setListItens.set(this.#parseItems());
   }
+  public updateItemCheckbox(newItem: { id: string; checked: boolean }) {
+    console.log(newItem);
 
+    this.#setListItens.update((old: IListItems[]) => {
+      old.filter((res) => {
+        if (res.id === newItem.id) {
+          res.checked = newItem.checked;
+          return res;
+        }
+        return res;
+      });
+      return old;
+    });
+    return localStorage.setItem("@my-list",
+    JSON.stringify(this.#setListItens())
+    )
+  }
 }
