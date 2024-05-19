@@ -23,10 +23,14 @@
   (oututAddListItems)="getInputAndAddItem($event)"
 />
 <main class="container">
-  <h2>Pendencias</h2>
-  <app-input-list-item [inputListItems]="listItemsStage('pending')" />
-  <h2>Concluidas</h2>
-  <app-input-list-item [inputListItems]="listItemsStage('complete')" />
+  <div *ngIf="listItemsStage('pending').length">
+    <h2>Pendencias</h2>
+    <app-input-list-item [inputListItems]="listItemsStage('pending')" />
+  </div>
+  <div *ngIf="listItemsStage('complete').length">
+    <h2>Concluidas</h2>
+    <app-input-list-item [inputListItems]="listItemsStage('complete')" />
+  </div>
 </main>
 <footer>
   <button (click)="deleteAllItems()" class="btn btn-danger">
