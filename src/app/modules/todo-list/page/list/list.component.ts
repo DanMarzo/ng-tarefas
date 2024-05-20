@@ -3,6 +3,7 @@ import { Component, signal } from '@angular/core';
 import { InputAddItemComponent } from '../../components/input-add-item/input-add-item.component';
 import { IListItems } from '../../interface/IListitems.interface';
 import { InputListItemComponent } from '../../components/input-list-item/input-list-item.component';
+import { ELocalStorage } from '../../enum/ELocalStorage.enum';
 
 @Component({
   selector: 'app-list',
@@ -18,11 +19,11 @@ export class ListComponent {
   public getListItens = this.#setListItens.asReadonly();
 
   #parseItems() {
-    return JSON.parse(localStorage.getItem('@my-list') ?? '[]');
+    return JSON.parse(localStorage.getItem(ELocalStorage.MY_LIST) ?? '[]');
   }
   public getInputAndAddItem(value: IListItems) {
     localStorage.setItem(
-      '@my-list',
+      ELocalStorage.MY_LIST,
       JSON.stringify([...this.#setListItens(), value])
     );
     return this.#setListItens.set(this.#parseItems());
@@ -41,7 +42,7 @@ export class ListComponent {
   }
 
   public deleteAllItems() {
-    localStorage.removeItem('@my-list');
+    localStorage.removeItem(ELocalStorage.MY_LIST);
     return this.#setListItens.set(this.#parseItems());
   }
   public updateItemCheckbox(newItem: { id: string; checked: boolean }) {
@@ -56,7 +57,7 @@ export class ListComponent {
       return old;
     });
     return localStorage.setItem(
-      '@my-list',
+      ELocalStorage.MY_LIST,
       JSON.stringify(this.#setListItens())
     );
   }
@@ -73,7 +74,7 @@ export class ListComponent {
       return old;
     });
     return localStorage.setItem(
-      '@my-list',
+      ELocalStorage.MY_LIST,
       JSON.stringify(this.#setListItens())
     );
   }
@@ -85,7 +86,7 @@ export class ListComponent {
       return oldValue.filter((res) => res.id !== id);
     });
     return localStorage.setItem(
-      '@my-list',
+      ELocalStorage.MY_LIST,
       JSON.stringify(this.#setListItens())
     );
   }
