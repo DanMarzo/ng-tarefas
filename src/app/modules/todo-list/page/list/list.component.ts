@@ -21,6 +21,13 @@ export class ListComponent {
   #parseItems() {
     return JSON.parse(localStorage.getItem(ELocalStorage.MY_LIST) ?? '[]');
   }
+  #updateLocalStorage(){
+    return localStorage.setItem(
+      ELocalStorage.MY_LIST,
+      JSON.stringify(this.#setListItens())
+    );
+  }
+
   public getInputAndAddItem(value: IListItems) {
     localStorage.setItem(
       ELocalStorage.MY_LIST,
@@ -56,10 +63,7 @@ export class ListComponent {
       });
       return old;
     });
-    return localStorage.setItem(
-      ELocalStorage.MY_LIST,
-      JSON.stringify(this.#setListItens())
-    );
+    return this.#updateLocalStorage();
   }
 
   public updateItemText(newItem: { id: string; value: string }) {
@@ -73,10 +77,7 @@ export class ListComponent {
       });
       return old;
     });
-    return localStorage.setItem(
-      ELocalStorage.MY_LIST,
-      JSON.stringify(this.#setListItens())
-    );
+    return this.#updateLocalStorage();
   }
 
   public deleteItem(id: string) {
@@ -85,9 +86,6 @@ export class ListComponent {
     this.#setListItens.update((oldValue: Array<IListItems>) => {
       return oldValue.filter((res) => res.id !== id);
     });
-    return localStorage.setItem(
-      ELocalStorage.MY_LIST,
-      JSON.stringify(this.#setListItens())
-    );
+   return this.#updateLocalStorage();
   }
 }
