@@ -29,6 +29,7 @@
       [inputListItems]="listItemsStage('pending')"
       (outputUpdateItemCheckBox)="updateItemCheckbox($event)"
       (outputUpdateItemText)="updateItemText($event)"
+      (outputDeleteItem)="deleteItem($event)"
     />
   </div>
   <div *ngIf="listItemsStage('complete').length">
@@ -37,6 +38,7 @@
       [inputListItems]="listItemsStage('complete')"
       (outputUpdateItemCheckBox)="updateItemCheckbox($event)"
       (outputUpdateItemText)="updateItemText($event)"
+      (outputDeleteItem)="deleteItem($event)"
     />
   </div>
 </main>

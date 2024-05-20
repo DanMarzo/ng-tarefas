@@ -45,7 +45,6 @@ export class ListComponent {
     return this.#setListItens.set(this.#parseItems());
   }
   public updateItemCheckbox(newItem: { id: string; checked: boolean }) {
-
     this.#setListItens.update((old: IListItems[]) => {
       old.filter((res) => {
         if (res.id === newItem.id) {
@@ -56,13 +55,13 @@ export class ListComponent {
       });
       return old;
     });
-    return localStorage.setItem("@my-list",
-    JSON.stringify(this.#setListItens())
-    )
+    return localStorage.setItem(
+      '@my-list',
+      JSON.stringify(this.#setListItens())
+    );
   }
 
   public updateItemText(newItem: { id: string; value: string }) {
-
     this.#setListItens.update((old: IListItems[]) => {
       old.filter((res) => {
         if (res.id === newItem.id) {
@@ -73,8 +72,21 @@ export class ListComponent {
       });
       return old;
     });
-    return localStorage.setItem("@my-list",
-    JSON.stringify(this.#setListItens())
-    )
+    return localStorage.setItem(
+      '@my-list',
+      JSON.stringify(this.#setListItens())
+    );
+  }
+
+  public deleteItem(id: string) {
+    console.log(id);
+
+    this.#setListItens.update((oldValue: Array<IListItems>) => {
+      return oldValue.filter((res) => res.id !== id);
+    });
+    return localStorage.setItem(
+      '@my-list',
+      JSON.stringify(this.#setListItens())
+    );
   }
 }
