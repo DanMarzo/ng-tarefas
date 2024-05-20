@@ -4,6 +4,7 @@ import { InputAddItemComponent } from '../../components/input-add-item/input-add
 import { IListItems } from '../../interface/IListitems.interface';
 import { InputListItemComponent } from '../../components/input-list-item/input-list-item.component';
 import { ELocalStorage } from '../../enum/ELocalStorage.enum';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list',
@@ -21,7 +22,7 @@ export class ListComponent {
   #parseItems() {
     return JSON.parse(localStorage.getItem(ELocalStorage.MY_LIST) ?? '[]');
   }
-  #updateLocalStorage(){
+  #updateLocalStorage() {
     return localStorage.setItem(
       ELocalStorage.MY_LIST,
       JSON.stringify(this.#setListItens())
@@ -49,8 +50,20 @@ export class ListComponent {
   }
 
   public deleteAllItems() {
-    localStorage.removeItem(ELocalStorage.MY_LIST);
-    return this.#setListItens.set(this.#parseItems());
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Nao sera possivel desfazer essa operacao!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, apagar tudo!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem(ELocalStorage.MY_LIST);
+        return this.#setListItens.set(this.#parseItems());
+      }
+    });
   }
   public updateItemCheckbox(newItem: { id: string; checked: boolean }) {
     this.#setListItens.update((old: IListItems[]) => {
@@ -81,11 +94,21 @@ export class ListComponent {
   }
 
   public deleteItem(id: string) {
-    console.log(id);
-
-    this.#setListItens.update((oldValue: Array<IListItems>) => {
-      return oldValue.filter((res) => res.id !== id);
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Nao sera possivel desfazer essa operacao!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, apagar item!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.#setListItens.update((oldValue: Array<IListItems>) => {
+          return oldValue.filter((res) => res.id !== id);
+        });
+        return this.#updateLocalStorage();
+      }
     });
-   return this.#updateLocalStorage();
   }
 }
